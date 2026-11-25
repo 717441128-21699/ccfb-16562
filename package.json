@@ -1,0 +1,16 @@
+{
+  "name": "hualou-brocade",
+  "version": "1.0.0",
+  "description": "花楼织锦:挑花结本解谜游戏",
+  "type": "commonjs",
+  "scripts": {
+    "build": "esbuild src/main.ts --bundle --format=iife --outfile=dist/bundle.js",
+    "typecheck": "tsc --noEmit",
+    "test": "esbuild test/smoke.ts --bundle --platform=node --format=esm --outfile=dist-test/smoke.mjs && node dist-test/smoke.mjs"
+  },
+  "license": "ISC",
+  "devDependencies": {
+    "esbuild": "^0.28.2",
+    "typescript": "^7.0.2"
+  }
+}

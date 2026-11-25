@@ -1,0 +1,121 @@
+/* 花楼织锦 —— 深色木质织机风 */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body, #app { height: 100%; }
+body {
+  background: #14100b;
+  color: #e0d5bd;
+  font: 14px/1.5 "Songti SC", "SimSun", "Noto Serif SC", serif;
+  overflow: hidden;
+}
+.page { height: 100%; display: flex; flex-direction: column; }
+.dim { color: #9a8d72; font-size: 12px; }
+.mono { font-family: ui-monospace, Consolas, monospace; }
+
+/* ---------- 通用 ---------- */
+.bar {
+  display: flex; align-items: center; gap: 10px;
+  padding: 8px 12px;
+  background: #241c12;
+  border-bottom: 1px solid #3a2e1c;
+  flex: none;
+}
+.bar-title { flex: 1; display: flex; align-items: baseline; gap: 10px; min-width: 0; }
+.bar-title b { font-size: 16px; color: #e8c96a; }
+.btn {
+  background: #33281a; color: #e0d5bd;
+  border: 1px solid #55432a; border-radius: 4px;
+  padding: 4px 12px; cursor: pointer; font: inherit; font-size: 13px;
+  white-space: nowrap;
+}
+.btn:hover { background: #443521; }
+.btn.primary { background: #7a5a1e; border-color: #a8853a; color: #fff3d0; }
+.btn.primary:hover { background: #93702a; }
+.btn:disabled { opacity: 0.4; cursor: default; }
+.btn.on { background: #7a5a1e; color: #fff3d0; border-color: #a8853a; }
+.chk { display: flex; align-items: center; gap: 4px; font-size: 13px; white-space: nowrap; }
+.lbl { font-size: 12px; color: #9a8d72; }
+.num {
+  width: 52px; background: #1a140d; color: #e0d5bd;
+  border: 1px solid #55432a; border-radius: 4px; padding: 2px 6px; font: inherit;
+}
+.sel {
+  background: #1a140d; color: #e0d5bd;
+  border: 1px solid #55432a; border-radius: 4px; padding: 3px 6px; font: inherit;
+}
+.grp { padding: 8px 0; border-bottom: 1px solid #2e2416; }
+.grp-t { font-size: 12px; color: #b09a6a; margin-bottom: 6px; letter-spacing: 2px; }
+.row { display: flex; align-items: center; gap: 6px; margin-bottom: 6px; flex-wrap: wrap; }
+.stat { font-size: 13px; margin: 3px 0; }
+.stat.bad b, .bad { color: #ff7a5c; }
+.stat.warn b { color: #e8c96a; }
+.tip { font-size: 12px; color: #9a8d72; margin: 3px 0; }
+
+/* ---------- 关卡选择 ---------- */
+.levels { overflow-y: auto; }
+.hero { padding: 36px 24px 18px; text-align: center; }
+.hero h1 { font-size: 34px; color: #e8c96a; letter-spacing: 12px; margin-bottom: 10px; }
+.hero p { max-width: 640px; margin: 0 auto; color: #b8ab8c; }
+.cards {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 16px; padding: 20px 28px;
+}
+.card {
+  background: #20180f; border: 1px solid #3a2e1c; border-radius: 8px;
+  overflow: hidden; cursor: pointer; transition: transform .12s, border-color .12s;
+}
+.card:hover { transform: translateY(-3px); border-color: #a8853a; }
+.thumb { width: 100%; display: block; background: #100d09; }
+.card-body { padding: 10px 12px; }
+.card-name { font-size: 16px; color: #e8c96a; margin-bottom: 2px; }
+.stars-sm { color: #e8c96a; font-size: 13px; }
+.spec { margin-top: 4px; }
+.foot { text-align: center; padding: 12px 24px 28px; }
+
+/* ---------- 挑花结本 ---------- */
+.ed-main { flex: 1; display: flex; min-height: 0; }
+.ed-side {
+  width: 250px; flex: none; overflow-y: auto;
+  background: #1d160e; border-right: 1px solid #3a2e1c;
+  padding: 0 12px;
+}
+.ed-strip-wrap {
+  width: 44px; flex: none; background: #171208;
+  border-right: 1px solid #3a2e1c;
+}
+.ed-strip-wrap canvas { width: 100%; height: 100%; display: block; cursor: crosshair; }
+.ed-canvas-wrap { flex: 1; min-width: 0; position: relative; }
+.ed-canvas-wrap canvas { width: 100%; height: 100%; display: block; cursor: crosshair; }
+.shuttle { width: 34px; height: 24px; border-radius: 12px/8px; padding: 0; }
+.shuttle.on { outline: 2px solid #fff3d0; }
+.tips { border-bottom: none; }
+
+/* ---------- 织机 ---------- */
+.loom-top { height: 200px; flex: none; background: #1a140d; border-bottom: 1px solid #3a2e1c; }
+.loom-top canvas { width: 100%; height: 100%; display: block; }
+.loom-fabric { flex: 1; min-height: 0; }
+.loom-fabric canvas { width: 100%; height: 100%; display: block; }
+.loom-progress {
+  flex: none; height: 22px; background: #1d160e; position: relative;
+  display: flex; align-items: center; justify-content: center;
+}
+.loom-progress div {
+  position: absolute; left: 0; top: 0; bottom: 0;
+  background: #7a5a1e55; transition: width .1s;
+}
+.loom-progress span { position: relative; font-size: 11px; color: #b8ab8c; }
+
+/* ---------- 成品 ---------- */
+.rs-main { flex: 1; display: flex; min-height: 0; }
+.rs-canvas-wrap { flex: 1; min-width: 0; }
+.rs-canvas-wrap canvas { width: 100%; height: 100%; display: block; cursor: grab; }
+.rs-side {
+  width: 260px; flex: none; overflow-y: auto;
+  background: #1d160e; border-left: 1px solid #3a2e1c;
+  padding: 12px;
+}
+.verdict { font-size: 22px; text-align: center; padding: 8px 0 2px; }
+.verdict.pass { color: #8fd07a; }
+.verdict.fail { color: #ff7a5c; }
+.stars { text-align: center; font-size: 26px; color: #e8c96a; margin-bottom: 8px; letter-spacing: 6px; }
+.err-list { display: flex; flex-direction: column; gap: 4px; }
+.err-item { text-align: left; font-size: 12px; padding: 3px 8px; }
